@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('css/style_light.css') }}" rel="stylesheet" id="theme-link">
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+
+<body>
+    <header class="container">
+        <h1>TodoApp</h1>
+        <span id="theme">Thème sombre</span></label>
+        <nav>
+            <ul class="nav nav-tabs">
+                <li class="{% block block1 %}{% endblock %}">
+                    <a href="{{ path('homepage') }}">A propos</a>
+                </li>
+                <li class="{% block block2 %}{% endblock %}">
+                    <a href="{{ path('todo_list') }}">Todos</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container">
+        {% block body %}{% endblock %}
+    </main>
+   {% block javascripts %} 
+<script src="js/scripts.js"></script>
+{% endblock %} 
+
+</body>
+
+</html>

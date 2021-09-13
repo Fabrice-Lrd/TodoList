@@ -1,0 +1,27 @@
+.list-group-item form {
+	float: right;
+}
+.list-group-item:hover {
+	background-color: aliceblue;
+}
+.glyphicon {
+	font-size: 1.4em;
+	vertical-align: text-bottom;
+}
+body {
+    background-color: #202020;   
+}
+
+.list-group-item{
+    background-color: rgb(73, 73, 73);
+}
+.active a{
+    background-color: rgb(73, 73, 73) !important;
+    color: rgb(48, 103, 204)!important;
+}
+.form-control{
+    background-color: rgb(73, 73, 73);
+}
+#theme{
+    color: rgb(48, 103, 204);
+}

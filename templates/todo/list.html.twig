@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des tâches{% endblock %}
+
+{% block block2 %}active{% endblock %}
+
+{% block body %}
+
+<h2>Liste des tâches</h2>
+
+
+{# read and display all flash messages #}
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ label }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+
+
+<ul class="list-group">
+
+    {% for key, todo in todos %}
+
+    <li class="list-group-item">
+
+        <form action="{{ path('todo_delete') }}" method="post">
+            <button class="btn btn-xs btn-link" type="submit" name="delete" value="{{ key }}"><span class="glyphicon glyphicon-remove"></span></button>
+        </form>
+
+        <span>
+            {% if todo.status == 'done' %}
+            <!-- tâche effectuée -->
+            <a href="{{ path('todo_set_status', { 'id' : key, 'status' : 'undone' } ) }}"><span
+                    class="glyphicon glyphicon-check"></span></a>
+            {% else %}
+            <!-- tâche non effectuée -->
+            <a href="{{ path('todo_set_status', { 'id' : key, 'status' : 'done' } ) }}"><span
+                    class="glyphicon glyphicon-unchecked"></span></a>
+            {% endif %}
+
+            <!-- lien vers tâche -->
+            <a href="{{ path('todo_show', { 'id' : key }) }}">
+                {% if todo.status == 'done' %}
+                <!-- tâche effectuée -->
+                <s>{{ todo.task }}</s>
+                {% else %}
+                <!-- tâche non effectuée -->
+                {{ todo.task }}
+                {% endif %}
+            </a>
+        </span>
+    </li>
+    {% endfor %}
+</ul>
+
+{{ include('partials/_new_task_form.html.twig') }}
+
+<hr>
+<a href="{{ path('todo_reset') }}">Réinitialiser les tâches</a>
+{% endblock %}
+
